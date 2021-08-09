@@ -1,4 +1,4 @@
-class Heap {
+class PriorityQueue {
   constructor (collection = [], comparator) {
     this.comparator = comparator;
     if (comparator === undefined) {
@@ -42,17 +42,17 @@ class Heap {
   bubbleDown(i) {
     if (i > Math.floor(this.size / 2) - 1) return;
     let currEle = this.heap[i];
-    let left = Heap.left(i);
-    let right = Heap.right(i);
+    let left = PriorityQueue.left(i);
+    let right = PriorityQueue.right(i);
     
     let newIndex = i;
     if (left < this.size && this.comparator(currEle, this.heap[left]) > 0) {
       currEle = this.heap[left];
-      newIndex = Heap.left(i);
+      newIndex = PriorityQueue.left(i);
     }
     if (right < this.size && this.comparator(currEle, this.heap[right]) > 0) {
       currEle = this.heap[right];
-      newIndex = Heap.right(i);
+      newIndex = PriorityQueue.right(i);
     }
     if (newIndex !== i) {
       this.swap(i, newIndex)
@@ -62,24 +62,24 @@ class Heap {
 
   bubbleUp(i) {
     while (i > 0) {
-      let parent = this.heap[Heap.parent(i)];
+      let parent = this.heap[PriorityQueue.parent(i)];
       if (this.comparator(parent, this.heap[i]) > 0) {
-        this.swap(i, Heap.parent(i));
+        this.swap(i, PriorityQueue.parent(i));
       }
-      i = Heap.parent(i);
+      i = PriorityQueue.parent(i);
     }
   }
 
   peek() {
     if (this.size <= 0) {
-      throw new Error('no elements in heap.')
+      throw new Error('no elements in PriorityQueue.')
     }
     return this.heap[0];
   }
 
   poll() {
     if (this.size === 0) {
-      throw new Error('no elements in heap.')
+      throw new Error('no elements in PriorityQueue.')
     }
     this.swap(0, this.size - 1);
     const top = this.heap.pop();
@@ -95,4 +95,4 @@ class Heap {
   }
 }
 
-module.exports = Heap;
+module.exports = PriorityQueue;

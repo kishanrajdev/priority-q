@@ -1,5 +1,5 @@
 const assert = require('assert').strict;
-var PriorityQ = require('..')
+const PriorityQ = require('..');
 
 describe('PriorityQ', function() {
 
